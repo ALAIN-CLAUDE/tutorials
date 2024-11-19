@@ -25,8 +25,7 @@ For this tutorial, we will be using the interactive mode of the PHP command-line
 Let's try doing nothing. You can add comments in three ways:
 ```php
 //    Comment style 1 - anything after the double slash to the end of the line is ignored
-#     Comment style 2 - anything after the hash sign to the end of the line is ignored
-/*    Comment style 3 - anything to the next star and slash are ignored, can be in the middle of a
+/*    Comment style 2 - anything to the next star and slash are ignored, can be in the middle of a
       line, or be several lines long */
 ```
 Try these out and see absolutely nothing happen! We'll be using these on the end of our example lines to explain them and what you might see as output. You *don't* have to type out comments.
