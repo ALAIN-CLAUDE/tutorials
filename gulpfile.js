@@ -1,48 +1,50 @@
-var
-browsersync  = require('browser-sync').create(),
-  concat     = require('gulp-concat'),
-  gulp       = require('gulp'),
-  sourcemaps = require('gulp-sourcemaps'),
-  uglify     = require('gulp-uglify'),
-  paths      = {
-    jsdev:   [
-      './javascripts-dev/vendor/jszip.js',
-      './javascripts-dev/vendor/jszip-utils.js',
-      './javascripts-dev/vendor/FileSaver.js',
-      './javascripts-dev/src/downloader.js',
-      './javascripts-dev/src/zipper.js',
-      './javascripts-dev/src/ui.js',
-      './javascripts-dev/main.js',
-    ],
-    jsdist:  './javascripts/',
-  };
+const browsersync = require('browser-sync').create();
+const concat = require('gulp-concat');
+const gulp = require('gulp');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
 
-gulp.task('js', function() {
+const paths = {
+  jsdev: [
+    './javascripts-dev/vendor/jszip.js',
+    './javascripts-dev/vendor/jszip-utils.js',
+    './javascripts-dev/vendor/FileSaver.js',
+    './javascripts-dev/src/downloader.js',
+    './javascripts-dev/src/zipper.js',
+    './javascripts-dev/src/ui.js',
+    './javascripts-dev/main.js',
+  ],
+  jsdist: './javascripts/',
+};
+
+function js() {
   return gulp
-    .src(paths.jsdev)
-    .pipe(sourcemaps.init())
-    .pipe(concat('downloader-bundle.js'))
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.jsdist));
-});
+      .src(paths.jsdev)
+      .pipe(sourcemaps.init())
+      .pipe(concat('downloader-bundle.js'))
+      .pipe(uglify())
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest(paths.jsdist));
+}
 
-gulp.task('watch', function() {
-  gulp.watch(paths.jsdev, ['js']);
-});
+function watch() {
+  gulp.watch(paths.jsdev, js);
+}
 
-gulp.task('server', function() {
+function server() {
   browsersync.init({
     server: {
       baseDir: './',
       routes: {
-        "/test" : 'javascripts-dev'
-      }
+        "/test": 'javascripts-dev',
+      },
     },
-    port:   4000,
+    port: 4000,
     notify: false,
-    open:   false
+    open: false,
   });
-});
+}
 
-gulp.task('default', ['js', 'watch', 'server']);
+const build = gulp.series(js, gulp.parallel(watch, server));
+
+gulp.task('default', build);
