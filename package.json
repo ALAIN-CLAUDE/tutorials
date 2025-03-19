@@ -7,13 +7,13 @@
   },
   "author": "",
   "devDependencies": {
-    "browser-sync": "^2.12.3",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-sourcemaps": "^2.0.0-alpha",
-    "gulp-uglify": "^1.5.3"
+    "browser-sync": "^3.0.3",
+    "gulp": "^5.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^5.0.0"
   }
 }
